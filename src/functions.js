@@ -113,11 +113,21 @@ async function newProject() {
     try {
       const arr = await fs.readJSON(file);
       const { projects } = arr;
-      delete response.confirm;
-      response.state = 'active';
-      projects.push(response);
-      await fs.writeJSON(file, arr);
-      log(`\n${chalk.green('✔')} Succesfully added ${chalk.bold(response.name)} to your stack.\n`);
+      let proj;
+
+      projects.forEach((p) => {
+        if (p.name === response.name) proj = p;
+      });
+
+      if (proj) {
+        log(`\n  ${chalk.red('✖')} Project ${chalk.bold(response.name)} already exists!\n`);
+      } else {
+        delete response.confirm;
+        response.state = 'active';
+        projects.push(response);
+        await fs.writeJSON(file, arr);
+        log(`\n${chalk.green('✔')} Succesfully added ${chalk.bold(response.name)} to your stack.\n`);
+      }
     } catch (err) {
       throw new Error(err);
     }
