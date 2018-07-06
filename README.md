@@ -51,3 +51,9 @@ $ sudo npm install -g pacocoursey/focus
         or
       $ focus list
 ```
+
+#
+
+<p align="center">
+  <a href="http://paco.sh"><img src="https://raw.githubusercontent.com/pacocoursey/pacocoursey.github.io/master/footer.png" height="300"></a>
+</p>
